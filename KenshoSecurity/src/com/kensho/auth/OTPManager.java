@@ -1,9 +1,9 @@
 package com.kensho.auth;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class OTPManager {
     private static final int OTP_LENGTH = 6;
@@ -43,7 +43,7 @@ public class OTPManager {
     }
     
     private String generateRandomOTP() {
-        Random random = new Random();
+        SecureRandom random = new SecureRandom();
         StringBuilder otp = new StringBuilder();
         for (int i = 0; i < OTP_LENGTH; i++) {
             otp.append(random.nextInt(10));

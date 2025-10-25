@@ -48,6 +48,14 @@ public class AuthManager {
     public boolean verifyOTP(String email, String code) {
         return otpManager.verifyOTP(email, code);
     }
+
+    public String regenerateOTP(String email) {
+        String otp = otpManager.generateOTP(email);
+        System.out.println("🔐 [SECURITY OTP] Verification code sent to: " + email);
+        System.out.println("🔢 [YOUR OTP CODE]: " + otp);
+        System.out.println("⏰ [NOTE] This code expires in 5 minutes");
+        return otp;
+    }
     
     public boolean authenticateUser(String username, String password) {
         DatabaseManager.User user = dbManager.getUser(username);

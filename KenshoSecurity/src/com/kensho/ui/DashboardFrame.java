@@ -147,10 +147,22 @@ public class DashboardFrame extends JFrame {
     }
     
     private JTextArea findResultsArea() {
-        for (Component comp : getContentPane().getComponents()) {
+        return findResultsAreaRecursive(getContentPane());
+    }
+
+    private JTextArea findResultsAreaRecursive(Container container) {
+        for (Component comp : container.getComponents()) {
             if (comp instanceof JScrollPane) {
                 JScrollPane scrollPane = (JScrollPane) comp;
-                return (JTextArea) scrollPane.getViewport().getView();
+                Component view = scrollPane.getViewport().getView();
+                if (view instanceof JTextArea) {
+                    return (JTextArea) view;
+                }
+            } else if (comp instanceof Container) {
+                JTextArea result = findResultsAreaRecursive((Container) comp);
+                if (result != null) {
+                    return result;
+                }
             }
         }
         return null;

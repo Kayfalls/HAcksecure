@@ -129,9 +129,9 @@ public class OTPVerificationFrame extends JFrame {
     }
     
     private void resendOTP() {
-        authManager.registerUser("dummy", "dummy", email); // This will regenerate OTP
+        authManager.regenerateOTP(email);
         JOptionPane.showMessageDialog(this,
-            "📧 A new OTP code has been sent to your email.",
+            "A new OTP code has been sent to your email.",
             "OTP Resent", JOptionPane.INFORMATION_MESSAGE);
     }
 }

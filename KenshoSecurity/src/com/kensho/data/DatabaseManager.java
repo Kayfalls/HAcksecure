@@ -13,19 +13,20 @@ public class DatabaseManager {
         loadUsers();
     }
     
-    public static class User {
+    public static class User implements java.io.Serializable {
+        private static final long serialVersionUID = 1L;
         private String username;
         private String passwordHash;
         private String salt;
         private String email;
-        
+
         public User(String username, String passwordHash, String salt, String email) {
             this.username = username;
             this.passwordHash = passwordHash;
             this.salt = salt;
             this.email = email;
         }
-        
+
         // Getters
         public String getUsername() { return username; }
         public String getPasswordHash() { return passwordHash; }
